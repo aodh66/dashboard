@@ -1,0 +1,112 @@
+* {
+  font-family: sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  /* background-color: hsl(202, 100%, 50%); */
+  /* background-color: red; */
+  /* box-shadow: 2px 0px 5px hsla(0, 0%, 0%, 1); */
+  border-bottom: 1px solid hsla(0, 0%, 0%, 1);
+  margin-bottom: 1em;
+}
+
+.headtext {
+  margin: 0.25em 0;
+}
+
+/* h1 {
+  margin: 0;
+} */
+
+.top-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.two-column {
+margin-bottom: 1em;
+}
+
+.column-section {
+  min-width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-subsection {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-subsection a {
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+}
+
+.warframe-subsection {
+  background-color: hsla(0, 0%, 0%, 0.205);
+  padding: 0.25em;
+  border-radius: 15px;
+  margin-bottom: 0.5em;
+}
+
+.section-title {
+  font-size: 2em;
+  align-self: center;
+  margin: 0em;
+}
+
+.section-subtitle {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.date {
+  font-size: 2em;
+  margin: 0.5em;
+}
+
+.time {
+  font-size: 5em;
+  margin: 0 0 0.5em 0;
+}
+
+.section-data {
+  font-size: 1em;
+  margin: 0.25em;
+}
+
+.temperature,
+.weather {
+  font-size: 1.5em;
+}
+
+.request-button {
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.25);
+  border-width: 1px;
+}
+
+body {
+  background-color: hsl(48, 21%, 76%);
+  min-height: 100vw;
+  
+  /* color: hsl(0, 0%, 100%); */
+  padding: 1em;
+   background-image: url(/leaves.svg);
+   background-repeat: no-repeat;
+   background-size: 20%;
+   
+}
+
+@media screen and (min-width: 768px) {
+  .two-column {
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+  }
+}
