@@ -26,6 +26,10 @@ function startClock() {
 
   timeEl.textContent = `${hour}:${min}:${sec}`;
 
+  if (hour >= 18 || hour < 6) {
+    document.body.classList.add("night");
+  }
+
   setTimeout(startClock, 1000);
 }
 
@@ -166,8 +170,12 @@ async function successWarframe() {
     const apiCall = await fetch(endpointArbi);
     if (!apiCall.ok) throw apiCall;
     const data = await apiCall.json();
-    const { enemy, type } = data;
-    arbiEl.textContent = `${enemy} ${type}`;
+    const { enemy, expiry } = data;
+    const expiryTime = new Date(expiry);
+    const currentTime = new Date();
+    const difference = expiryTime - currentTime;
+    const minutesToExpiry = Math.floor((difference / (1000 * 60)) % 60);
+    arbiEl.textContent = `${enemy} (${minutesToExpiry}m)`;
   } catch (err) {
     console.log(err);
     arbiEl.textContent = `Sorry, an error has occurred with updating this information (check log)`;
@@ -199,9 +207,9 @@ async function successWarframe() {
     const apiCall = await fetch(endpointSortie);
     if (!apiCall.ok) throw apiCall;
     const data = await apiCall.json();
-    sortieMissionEl1.textContent = data.variants[0].missionType;
-    sortieMissionEl2.textContent = data.variants[1].missionType;
-    sortieMissionEl3.textContent = data.variants[2].missionType;
+    sortieMissionEl1.textContent = `Mission 1: ${data.variants[0].missionType}`;
+    sortieMissionEl2.textContent = `Mission 2: ${data.variants[1].missionType}`;
+    sortieMissionEl3.textContent = `Mission 3: ${data.variants[2].missionType}`;
   } catch (err) {
     console.log(err);
     sortieEl.textContent = `Sorry, an error has occurred with updating this information (check log)`;
@@ -211,9 +219,9 @@ async function successWarframe() {
     const apiCall = await fetch(endpointArchon);
     if (!apiCall.ok) throw apiCall;
     const data = await apiCall.json();
-    archonMissionEl1.textContent = data.missions[0].typeKey;
-    archonMissionEl2.textContent = data.missions[1].typeKey;
-    archonMissionEl3.textContent = data.missions[2].typeKey;
+    archonMissionEl1.textContent = `Mission 1: ${data.missions[0].typeKey}`;
+    archonMissionEl2.textContent = `Mission 2: ${data.missions[1].typeKey}`;
+    archonMissionEl3.textContent = `Mission 3: Assassination`; // ${data.missions[2].typeKey}`;
   } catch (err) {
     console.log(err);
     sortieEl.textContent = `Sorry, an error has occurred with updating this information (check log)`;
@@ -257,7 +265,11 @@ async function successWarframe() {
     if (!apiCall.ok) throw apiCall;
     const data = await apiCall.json();
     const { state, expiry } = data;
-    duviriEl.textContent = `${state.toUpperCase()}`;
+    const expiryTime = new Date(expiry);
+    const currentTime = new Date();
+    const difference = expiryTime - currentTime;
+    const minutesToExpiry = Math.floor((difference / (1000 * 60)) % 60);
+    duviriEl.textContent = `${state.toUpperCase()} Spiral (${minutesToExpiry}m)`;
   } catch (err) {
     console.log(err);
     duviriEl.textContent = `Sorry, an error has occurred with updating this information (check log)`;

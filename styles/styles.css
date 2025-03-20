@@ -1,3 +1,14 @@
+/* Variables */
+:root {
+  --background-lightmode-day: hsl(48, 100%, 94%);
+  --background-lightmode-night: hsla(256, 86%, 23%, 0.877);
+  --background-darkmode-day: hsl(48, 21%, 76%);
+  --background-darkmode-night: hsl(256, 100%, 9%);
+  --text-lightmode: hsl(0, 0%, 0%);
+  --text-darkmode: hsl(47, 43%, 92%);
+  --link-darkmode-night: hsl(61, 100%, 50%);
+}
+
 * {
   font-family: sans-serif;
 }
@@ -8,8 +19,11 @@
   /* background-color: hsl(202, 100%, 50%); */
   /* background-color: red; */
   /* box-shadow: 2px 0px 5px hsla(0, 0%, 0%, 1); */
-  border-bottom: 1px solid hsla(0, 0%, 0%, 1);
+  border-bottom: 1px solid var(--text-lightmode);
   margin-bottom: 1em;
+}
+body.night .header {
+  border-bottom: 1px solid var(--text-darkmode);
 }
 
 .headtext {
@@ -45,6 +59,11 @@ margin-bottom: 1em;
 .news-subsection a {
   font-size: 1.1em;
   margin-bottom: 0.5em;
+  width:fit-content
+}
+
+body.night .news-subsection a {
+  color: var(--link-darkmode-night);
 }
 
 .warframe-subsection {
@@ -109,4 +128,30 @@ body {
     justify-content: center;
     gap: 5%;
   }
+}
+
+/* Styles for light mode */
+@media (prefers-color-scheme: light) {
+  body {
+     transition: background-color 0.5s, color 0.5s;
+    background-color: var(--background-lightmode-day);
+    color: var(--text-lightmode);
+  }
+  body.night {
+    background-color: var(--background-lightmode-night);
+    color: var(--text-darkmode);
+    }
+}
+
+/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+     transition: background-color 0.5s, color 0.5s;
+    background-color: var(--background-darkmode-day);
+    color: var(--text-lightmode);
+  }
+  body.night {
+    background-color: var(--background-darkmode-night);
+    color: var(--text-darkmode);
+    }
 }
