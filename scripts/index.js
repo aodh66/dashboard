@@ -30,6 +30,9 @@ function startClock() {
     document.body.classList.add("night");
   }
 
+
+  
+  
   setTimeout(startClock, 1000);
 }
 
@@ -43,9 +46,11 @@ function addZero(num) {
 setDate();
 startClock();
 
+
 // -------------------------------------------------
 // Weather
 // -------------------------------------------------
+const weatherIcon = document.querySelector(`.weather-icon`);
 const tempEl = document.querySelector(`.temperature`);
 const weatherEl = document.querySelector(`.weather`);
 const humidityEl = document.querySelector(`.humidity`);
@@ -66,15 +71,24 @@ async function successWeather(loc) {
     const {
       main: { humidity, temp },
       weather: {
-        [0]: { main },
+        [0]: { main, icon },
       },
       wind: { speed },
     } = weatherData;
-
+    
     tempEl.textContent = `Temperature: ${temp} °C`;
     weatherEl.textContent = `Weather: ${main}`;
     humidityEl.textContent = `Humidity: ${humidity}%`;
     windEl.textContent = `Wind Speed: ${speed} KM/H`;
+    weatherIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+    
+    // document.body.classList.add("night");
+    if (icon[2] === "n") {
+      document.body.classList.add("night");
+    } else {
+      document.body.classList.remove("night");
+    }
+    
   } catch (err) {
     console.log(err);
     tempEl.textContent = `Sorry, an error has occurred with updating your weather ${err}`;

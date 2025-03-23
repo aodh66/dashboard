@@ -1,27 +1,36 @@
 /* Variables */
 :root {
   --background-lightmode-day: hsl(48, 100%, 94%);
-  --background-lightmode-night: hsla(256, 86%, 23%, 0.877);
+  --background-lightmode-night: hsla(255, 55%, 22%, 0.877);
   --background-darkmode-day: hsl(48, 21%, 76%);
   --background-darkmode-night: hsl(256, 100%, 9%);
   --text-lightmode: hsl(0, 0%, 0%);
   --text-darkmode: hsl(47, 43%, 92%);
-  --link-darkmode-night: hsl(61, 100%, 50%);
+  --link-night: hsl(61, 100%, 40%);
 }
 
 * {
   font-family: sans-serif;
 }
 
+body {
+  background-color: hsl(48, 21%, 76%);
+  min-height: 100vw;
+  padding: 1em;
+  background-image: url(/leaves.svg);
+  background-repeat: no-repeat;
+  background-size: 20%;
+  overflow: hidden;
+}
+
 .header {
   display: flex;
   justify-content: center;
-  /* background-color: hsl(202, 100%, 50%); */
-  /* background-color: red; */
   /* box-shadow: 2px 0px 5px hsla(0, 0%, 0%, 1); */
   border-bottom: 1px solid var(--text-lightmode);
   margin-bottom: 1em;
 }
+
 body.night .header {
   border-bottom: 1px solid var(--text-darkmode);
 }
@@ -29,10 +38,6 @@ body.night .header {
 .headtext {
   margin: 0.25em 0;
 }
-
-/* h1 {
-  margin: 0;
-} */
 
 .top-section {
   display: flex;
@@ -42,7 +47,7 @@ body.night .header {
 }
 
 .two-column {
-margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .column-section {
@@ -51,26 +56,61 @@ margin-bottom: 1em;
   flex-direction: column;
 }
 
+.weather-wrapper {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-around;
+  align-items: center;
+  min-width: 30%;
+  background-color: hsla(0, 0%, 0%, 0.2);
+  padding: 0.25em;
+  border-radius: 0.25em;
+  margin-bottom: 0.5em;
+  gap: 0.5em;
+}
+
+.weather-icon {
+  max-width: 25%;
+}
+
+.news-section {
+  padding: 0 1em;
+}
 .news-subsection {
   display: flex;
   flex-direction: column;
 }
 
+.news-title {
+  margin: 0.25em 0;
+}
+
 .news-subsection a {
   font-size: 1.1em;
   margin-bottom: 0.5em;
-  width:fit-content
+  width: fit-content;
 }
 
 body.night .news-subsection a {
-  color: var(--link-darkmode-night);
+  color: var(--link-night);
 }
 
 .warframe-subsection {
-  background-color: hsla(0, 0%, 0%, 0.205);
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  /* gap: 0.5em; */
+  justify-content: space-around;
+}
+
+.warframe-card {
+  background-color: hsla(0, 0%, 0%, 0.2);
   padding: 0.25em;
-  border-radius: 15px;
-  margin-bottom: 0.5em;
+  border-radius: 0.25em;
+  margin: 0.25em 0;
+  width: 100%;
+  /* border-bottom: 1px solid var(--text-lightmode); */
+  /* font-weight: bold; */
 }
 
 .section-title {
@@ -86,12 +126,12 @@ body.night .news-subsection a {
 
 .date {
   font-size: 2em;
-  margin: 0.5em;
+  margin: 0.1em;
 }
 
 .time {
-  font-size: 5em;
-  margin: 0 0 0.5em 0;
+  font-size: 4em;
+  margin: 0 0 0.1em 0;
 }
 
 .section-data {
@@ -99,9 +139,8 @@ body.night .news-subsection a {
   margin: 0.25em;
 }
 
-.temperature,
-.weather {
-  font-size: 1.5em;
+.weather-data-wrapper {
+  font-weight: bold;
 }
 
 .request-button {
@@ -110,48 +149,46 @@ body.night .news-subsection a {
   border-width: 1px;
 }
 
-body {
-  background-color: hsl(48, 21%, 76%);
-  min-height: 100vw;
-  
-  /* color: hsl(0, 0%, 100%); */
-  padding: 1em;
-   background-image: url(/leaves.svg);
-   background-repeat: no-repeat;
-   background-size: 20%;
-   
-}
-
 @media screen and (min-width: 768px) {
   .two-column {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     gap: 5%;
+  }
+
+.weather-data-wrapper {
+  font-size: 1.25em;
+}
+
+  .warframe-card {
+    width: 45%;
   }
 }
 
 /* Styles for light mode */
 @media (prefers-color-scheme: light) {
   body {
-     transition: background-color 0.5s, color 0.5s;
+    transition: background-color 0.5s, color 0.5s;
     background-color: var(--background-lightmode-day);
     color: var(--text-lightmode);
   }
   body.night {
     background-color: var(--background-lightmode-night);
     color: var(--text-darkmode);
-    }
+    text-shadow: 0px 0px 2px black;
+  }
 }
 
 /* Styles for dark mode */
 @media (prefers-color-scheme: dark) {
   body {
-     transition: background-color 0.5s, color 0.5s;
+    transition: background-color 0.5s, color 0.5s;
     background-color: var(--background-darkmode-day);
     color: var(--text-lightmode);
   }
   body.night {
     background-color: var(--background-darkmode-night);
     color: var(--text-darkmode);
-    }
+    text-shadow: 0px 0px 2px black;
+  }
 }
