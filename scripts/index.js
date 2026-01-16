@@ -30,9 +30,7 @@ function startClock() {
     document.body.classList.add("night");
   }
 
-
-  
-  
+    // document.body.classList.remove("night");
   setTimeout(startClock, 1000);
 }
 
@@ -45,7 +43,6 @@ function addZero(num) {
 
 setDate();
 startClock();
-
 
 // -------------------------------------------------
 // Weather
@@ -85,8 +82,10 @@ async function successWeather(loc) {
     // document.body.classList.add("night");
     if (icon[2] === "n") {
       document.body.classList.add("night");
+      // document.body.classList.remove("night");
     } else {
       document.body.classList.remove("night");
+      // document.body.classList.add("night");
     }
     
   } catch (err) {
@@ -245,8 +244,8 @@ async function successWarframe() {
     const apiCall = await fetch(endpointPlains);
     if (!apiCall.ok) throw apiCall;
     const data = await apiCall.json();
-    const { state, shortString } = data;
-    plainsEl.textContent = `${state.toUpperCase()} (${shortString})`;
+    const { state, timeLeft } = data;
+    plainsEl.textContent = `${state.toUpperCase()} (${timeLeft})`;
   } catch (err) {
     console.log(err);
     plainsEl.textContent = `Sorry, an error has occurred with updating this information (check log)`;
@@ -257,7 +256,8 @@ async function successWarframe() {
     if (!apiCall.ok) throw apiCall;
     const data = await apiCall.json();
     const { state, shortString } = data;
-    orbEl.textContent = `${state.toUpperCase()} (${shortString})`;
+    // orbEl.textContent = `${state.toUpperCase()} (${shortString})`;
+    orbEl.textContent = `${state.toUpperCase()}`;
   } catch (err) {
     console.log(err);
     orbEl.textContent = `Sorry, an error has occurred with updating this information (check log)`;
